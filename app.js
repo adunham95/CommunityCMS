@@ -20,10 +20,24 @@ mongoose.connection.on('err', (err)=>{
 });
 
 const app = express();
-const houseHold = require('./routes/')
+const houseHold = require('./routes/householdRoute');
 
 // Port Number
 const port = process.env.PORT || 8080;
+
+// CORS Middleware
+app.use(cors());
+
+// Body Pareser Middleware
+app.use(bodyParser.json());
+
+// Pssport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+app.use('/household', houseHold);
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, './public')));

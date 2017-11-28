@@ -3,13 +3,14 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
-const HouseHold = require('../models/household');
+const HouseHold = require('../models/householdModel');
 const config = require('../config/database');
 
 // Register Route
 router.post('/register', (req, res, next) => {
   let newHouseHold = new HouseHold({
     name: req.body.name,
+    accountType: req.body.accountType,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password
@@ -27,19 +28,19 @@ router.post('/register', (req, res, next) => {
 
 // Authentication
 router.post('/authentication', (req, res, next) => {
-  const HouseHoldname = req.body.HouseHoldname;
+  const username = req.body.username;
   const password = req.body.password;
 
-  HouseHold.getHouseHoldByName(HouseHoldname, (err, HouseHold) =>{
+  HouseHold.getHouseHoldByUsername(username, (err, HouseHoldInfo) =>{
     if(err) throw err;
-    if(!HouseHold){
+    if(!HouseHoldInfo){
       return res.json({success: false, msg: 'HouseHold not found'})
     }
 
-    HouseHold.comparePassword(password, HouseHold.password, (err, isMatch) => {
-      if (err) throw err;
+    HouseHold.comparePassword(password, HouseHoldInfo.password, (err, isMatch) => {
+      if (err) {throw err}
       if(isMatch){
-        const token = jwt.sign(HouseHold, config.secret, {
+        const token = jwt.sign({data: HouseHoldInfo}, config.secret, {
           expiresIn: 604800 //Week in seconds
         });
 
@@ -47,10 +48,10 @@ router.post('/authentication', (req, res, next) => {
           success: true,
           token: 'JWT '+token,
           HouseHold: {
-            id: HouseHold.id,
-            name: HouseHold.name,
-            HouseHoldname: HouseHold.HouseHoldname,
-            email: HouseHold.email
+            id: HouseHoldInfo.id,
+            name: HouseHoldInfo.name,
+            username: HouseHoldInfo.username,
+            email: HouseHoldInfo.email
           }
         })
       }
