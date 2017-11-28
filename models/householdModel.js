@@ -7,6 +7,10 @@ const HouseHoldSchema = mongoose.Schema({
     name: {
         type: String
     },
+    communityID:{
+        type: String,
+        required: true
+    },
     accountType: {
       type: String,
       required: true
@@ -53,4 +57,9 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
         if(err) {throw err;}
         callback(null, isMatch);
     })
+};
+
+module.exports.getHouseHoldByCommunity = function (communityID, callback) {
+    const query = {communityID: communityID};
+    Household.find(query, callback);
 };
