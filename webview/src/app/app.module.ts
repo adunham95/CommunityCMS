@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router"
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -16,11 +18,12 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
