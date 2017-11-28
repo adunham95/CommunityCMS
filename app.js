@@ -21,6 +21,7 @@ mongoose.connection.on('err', (err)=>{
 
 const app = express();
 const houseHold = require('./routes/householdRoute');
+const community = require('./routes/communityRoute');
 
 // Port Number
 const port = process.env.PORT || 8080;
@@ -38,6 +39,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/household', houseHold);
+app.use('/community', community);
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, './public')));
