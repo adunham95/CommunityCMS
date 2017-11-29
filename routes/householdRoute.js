@@ -11,7 +11,7 @@ router.post('/:communityID/register', (req, res, next) => {
   let newHouseHold = new HouseHold({
     name: req.body.name,
     communityID: req.params.communityID,
-    accountType: req.body.accountType,
+    admin: req.body.admin,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password
@@ -51,6 +51,7 @@ router.post('/authentication', (req, res, next) => {
           HouseHold: {
             id: HouseHoldInfo.id,
             communityId: HouseHoldInfo.communityId,
+            admin: HouseHoldInfo.admin,
             name: HouseHoldInfo.name,
             username: HouseHoldInfo.username,
             email: HouseHoldInfo.email
