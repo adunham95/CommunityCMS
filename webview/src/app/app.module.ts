@@ -17,6 +17,7 @@ import { CreateCommunityComponent } from './create-community/create-community.co
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import {RequestService} from "./services/request.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -50,7 +51,7 @@ const appRoutes: Routes = [
     MatListModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

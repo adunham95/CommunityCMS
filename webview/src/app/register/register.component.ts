@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RequestService} from "../services/request.service";
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private reqSerice: RequestService) { }
 
   ngOnInit() {
   }
@@ -28,5 +29,19 @@ export class RegisterComponent implements OnInit {
     console.log("password: " + this.password);
     console.log("admin: " + this.admin);
 
+    let communityBody = {"name": this.communityName};
+    let myData;
+
+    //TODO validate data
+
+    this.reqSerice.registerCommunity(communityBody).subscribe(data => {
+      myData = data;
+      if(myData.success == true){
+
+      }
+      else{
+        console.log(myData.msg)
+      }
+    });
   }
 }

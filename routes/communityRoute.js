@@ -33,7 +33,7 @@ router.get('/profile/:name', (req, res, next) => {
            res.json({
                success: true,
                community: {
-                   id: CommunityInfo.id,
+                   id: CommunityInfo._id,
                    name: CommunityInfo.name
                }
            })
