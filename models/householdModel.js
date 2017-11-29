@@ -11,8 +11,8 @@ const HouseHoldSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    accountType: {
-      type: String,
+    admin: {
+      type: Boolean,
       required: true
     },
     email: {
