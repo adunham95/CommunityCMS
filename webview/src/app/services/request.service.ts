@@ -33,7 +33,12 @@ export class RequestService {
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
     return this.http.post(this.urlChecker('/household/'+communityID+'/register'), houseHoldBody,{headers: headers})
+  }
 
+  getCommmunites(){
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    return this.http.get(this.urlChecker('/community/all'), {headers: headers})
   }
 
 }
