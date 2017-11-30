@@ -1,19 +1,25 @@
-<div class="loginContainer">
-  <mat-card class="loginCard">
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-      <mat-card-subtitle>Skyline CRM</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-form-field class="example-full-width">
-        <input matInput type="text" placeholder="Username">
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <input matInput type="password" placeholder="Password">
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LOGIN</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+<mat-card class="loginCard card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Skyline CRM</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="Username" [(ngModel)]="loginUsername">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput type="password" placeholder="Password" [(ngModel)]="loginPassword">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Select Community" [(ngModel)]="loginCommID">
+        <mat-option *ngFor="let community of communities" [(value)]="community._id">
+          {{ community.name }} - {{ community.state }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="/register" class="register">REGISTER FOR AN ACCOUNT</button>
+    <button mat-button class="login" (click)="login()">LOGIN</button>
+  </mat-card-actions>
+</mat-card>

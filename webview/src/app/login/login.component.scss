@@ -1,17 +1,18 @@
-.loginContainer{
-  height: 93vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: grey;
-  //TODO Work on background image loading
-  //background-image: url("https://static.pexels.com/photos/466685/pexels-photo-466685.jpeg");
-  //background-repeat: no-repeat;
-  //background-attachment: fixed;
-  //background-position: center;
+@import '~sass-material-colors';
+
+.card {
+  margin: 10px;
 }
 
-.loginCard{
-  //margin: 20vw;
-  width: 200px;
+.full-width{
+  width: 100%;
+}
+
+.register{
+  background: material-color('blue-grey', '500');
+  color: #FFFFFF;
+}
+.login{
+  background: material-color('green', '600');
+  color: #FFFFFF;
 }
