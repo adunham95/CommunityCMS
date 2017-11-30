@@ -8,9 +8,24 @@
       <h3 mat-subheader>Community Information</h3>
       <mat-list-item>
         <mat-form-field class="full-width">
-          <input matInput type="text" placeholder=" Community Name" [(ngModel)]="communityName">
+          <input matInput type="text" placeholder="Community Name" [(ngModel)]="communityName">
         </mat-form-field>
       </mat-list-item>
+      <mat-list-item>
+        <mat-form-field class="full-width">
+          <input matInput type="text" placeholder="City" [(ngModel)]="communityCity">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Select State" [(ngModel)]="communityState">
+            <mat-option *ngFor="let state of states" [(value)]="state.name">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-list-item>
+
       <h3 mat-subheader>Admin Account Information</h3>
       <mat-list-item>
         <mat-form-field class="full-width">

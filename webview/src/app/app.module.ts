@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {RequestService} from "./services/request.service";
 import {ValidatorService} from "./services/validator.service";
+import {DataService} from "./services/data.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     MatListModule,
     HttpClientModule
   ],
-  providers: [RequestService, ValidatorService],
+  providers: [RequestService, ValidatorService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

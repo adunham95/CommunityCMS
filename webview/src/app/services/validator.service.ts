@@ -7,7 +7,7 @@ export class ValidatorService {
   }
 
   validateCommunity(community){
-    if (community.name == undefined) {
+    if (community.name == undefined || community.state == undefined || community.city == undefined) {
       return false
     }
     else {

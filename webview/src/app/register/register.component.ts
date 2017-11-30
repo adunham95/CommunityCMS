@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestService} from "../services/request.service";
 import {ValidatorService} from "../services/validator.service";
+import {Router} from "@angular/router";
+import {DataService} from "../services/data.service";
 
 @Component({
   selector: 'app-register',
@@ -11,13 +13,23 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private reqService: RequestService,
-    private validateService: ValidatorService
+    private validateService: ValidatorService,
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.states = this.dataService.states()
   }
 
+  states = [];
+
+  //Community Info
   communityName: String;
+  communityState: String;
+  communityCity: String;
+
+  //Household Info
   name: String;
   email: String;
   username: String;
@@ -26,14 +38,13 @@ export class RegisterComponent implements OnInit {
 
   createAccount() {
     this.admin = true;
-    console.log("community name: " + this.communityName);
-    console.log("name: " + this.name);
-    console.log("email: " + this.email);
-    console.log("username: " + this.username);
-    console.log("password: " + this.password);
-    console.log("admin: " + this.admin);
 
-    let communityBody = {"name": this.communityName};
+    let communityBody = {
+      "name": this.communityName,
+      "city": this.communityCity,
+      "state": this.communityState
+    };
+    console.log(communityBody);
     let householdBody = {
       "name": this.name,
       "admin": this.admin,
@@ -41,6 +52,7 @@ export class RegisterComponent implements OnInit {
       "username": this.username,
       "password": this.password
     };
+    console.log(householdBody);
     let registerReturn;
     let communityInfo;
     let houseHoldReturn;
@@ -76,7 +88,8 @@ export class RegisterComponent implements OnInit {
             this.reqService.registerUser(communityInfo.community.id, householdBody).subscribe(data =>{
               houseHoldReturn = data;
               if(houseHoldReturn.success){
-                console.log("Household registered")
+                console.log("Household registered");
+                this.router.navigate(['/login']);
               }
               else{
                 console.log(houseHoldReturn.msg);
