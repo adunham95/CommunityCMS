@@ -23,7 +23,17 @@ export class RequestService {
     return this.http.post(this.urlChecker('/community/new'), community, {headers: headers})
   }
 
-  registerUser(){
+  getCommunity(communityName){
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    return this.http.get(this.urlChecker('/community/profile/' + communityName), {headers: headers})
+  }
+
+  registerUser(communityID, houseHoldBody){
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    return this.http.post(this.urlChecker('/household/'+communityID+'/register'), houseHoldBody,{headers: headers})
+
   }
 
 }
