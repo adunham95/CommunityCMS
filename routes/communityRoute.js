@@ -9,7 +9,9 @@ const config = require('../config/database');
 // Register Route
 router.post('/new', (req, res, next) => {
     let newCommunity = new CommunityModel({
-        name: req.body.name
+        name: req.body.name,
+        city: req.body.city,
+        state: req.body.state
     });
 
     CommunityModel.addCommunity(newCommunity, (err, Communuity) =>{
