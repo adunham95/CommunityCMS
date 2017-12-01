@@ -35,8 +35,8 @@ module.exports.getHouseHoldById = function (id, callback) {
     Household.findById(id, callback);
 };
 
-module.exports.getHouseHoldByUsername = function (username, callback) {
-    const query = {username: username};
+module.exports.getHouseHoldByUsername = function (username, communityID, callback) {
+    const query = {username: username, communityID: communityID};
     Household.findOne(query, callback);
 };
 

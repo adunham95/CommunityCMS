@@ -28,11 +28,12 @@ router.post('/:communityID/register', (req, res, next) => {
 });
 
 // Authentication
-router.post('/authentication', (req, res, next) => {
+router.post('/:communityID/authentication', (req, res, next) => {
+  const communityID = req.params.communityID;
   const username = req.body.username;
   const password = req.body.password;
 
-  HouseHold.getHouseHoldByUsername(username, (err, HouseHoldInfo) =>{
+  HouseHold.getHouseHoldByUsername(username, communityID, (err, HouseHoldInfo) =>{
     if(err) throw err;
     if(!HouseHoldInfo){
       return res.json({success: false, msg: 'HouseHold not found'})
@@ -50,7 +51,7 @@ router.post('/authentication', (req, res, next) => {
           token: 'JWT '+token,
           HouseHold: {
             id: HouseHoldInfo.id,
-            communityId: HouseHoldInfo.communityId,
+            communityID: HouseHoldInfo.communityID,
             admin: HouseHoldInfo.admin,
             name: HouseHoldInfo.name,
             username: HouseHoldInfo.username,
