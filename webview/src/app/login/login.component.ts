@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestService} from "../services/request.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private reqService: RequestService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
       console.log(userData);
       if(userData.success){
         this.reqService.storeUserData(userData.token, userData.HouseHold)
+        this.router.navigate(['/']);
       }
       else {
         console.log(userData.msg);
