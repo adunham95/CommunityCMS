@@ -36,7 +36,9 @@ router.get('/profile/:name', (req, res, next) => {
                success: true,
                community: {
                    id: CommunityInfo._id,
-                   name: CommunityInfo.name
+                   name: CommunityInfo.name,
+                   city: CommunityInfo.city,
+                   state: CommunityInfo.state
                }
            })
        }
