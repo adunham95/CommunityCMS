@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from "@angular/router"
+import {RouterModule, Routes} from "@angular/router";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 import {
   MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatSelectModule, MatSlideToggleModule,
@@ -14,18 +17,17 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterCardComponent } from './register-card/register-card.component';
 import { CreateCommunityComponent } from './create-community/create-community.component';
-import {FormsModule} from "@angular/forms";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+
 import {RequestService} from "./services/request.service";
 import {ValidatorService} from "./services/validator.service";
 import {DataService} from "./services/data.service";
+import {AuthGuardService} from "./guards/auth.guard";
 
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  // {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   // {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 ];
 
@@ -53,7 +55,7 @@ const appRoutes: Routes = [
     MatListModule,
     HttpClientModule
   ],
-  providers: [RequestService, ValidatorService, DataService],
+  providers: [RequestService, ValidatorService, DataService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
