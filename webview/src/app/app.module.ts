@@ -12,7 +12,6 @@ import {
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterCardComponent } from './register-card/register-card.component';
@@ -27,7 +26,6 @@ const appRoutes: Routes = [
   {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   // {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 ];
 
@@ -35,7 +33,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent,
     LoginComponent,
     RegisterComponent,
     RegisterCardComponent,
