@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
     let householdBody = {
       "name": this.name,
       "admin": this.admin,
+      "communityID": '',
       "email": this.email,
       "username": this.username,
       "password": this.password
@@ -83,6 +84,7 @@ export class RegisterComponent implements OnInit {
           communityInfo = data;
           if(communityInfo.success){
             console.log(communityInfo.community);
+            householdBody.communityID = communityInfo.community.id;
             console.log(householdBody);
             //Registers the household with communityID
             this.reqService.registerUser(communityInfo.community.id, householdBody).subscribe(data =>{
