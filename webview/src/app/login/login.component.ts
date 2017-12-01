@@ -27,8 +27,25 @@ export class LoginComponent implements OnInit {
   loginUsername: String;
 
   login(){
-    console.log(this.loginCommID);
-    console.log(this.loginUsername);
-    console.log(this.loginPassword);
+
+    const user = {
+      communityID: this.loginCommID,
+      username: this.loginUsername,
+      password: this.loginPassword
+    };
+
+    let userData;
+
+    this.reqService.authenticateUser(user).subscribe(data =>{
+      userData = data;
+      console.log(userData);
+      if(userData.success){
+        this.reqService.storeUserData(userData.token, userData.HouseHold)
+      }
+      else {
+        console.log(userData.msg);
+      }
+    });
+
   }
 }
