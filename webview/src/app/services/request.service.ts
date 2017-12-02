@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {tokenNotExpired} from "angular2-jwt"
+import {JwtHelper, tokenNotExpired} from "angular2-jwt"
 
 @Injectable()
 export class RequestService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+  ) {}
 
   dev = true;
+  jwtHelper: JwtHelper = new JwtHelper();
 
   urlChecker(url){
     if(this.dev){
@@ -54,7 +57,7 @@ export class RequestService {
       localStorage.setItem('id_token', token);
       localStorage.setItem('user', JSON.stringify(user));
     }
-    //If dont remeber me
+    //If don't remember me
     else {
       sessionStorage.setItem('id_token', token);
       sessionStorage.setItem('user', JSON.stringify(user));
@@ -64,7 +67,18 @@ export class RequestService {
   }
 
   isLoggedIn(){
-    return tokenNotExpired('id_token');
+    let token;
+    if(localStorage.getItem('id_token')){
+      console.log("Token in local storeage");
+      token = localStorage.getItem('id_token');
+    }
+    else if(sessionStorage.getItem('id_token')){
+      console.log("Token in session storage");
+      token = sessionStorage.getItem('id_token');
+    }
+
+    //Returns the opposite of the return
+    return (!this.jwtHelper.isTokenExpired(token));
   }
 
 }

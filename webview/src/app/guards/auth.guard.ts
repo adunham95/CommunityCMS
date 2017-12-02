@@ -11,7 +11,7 @@ export class AuthGuardService implements CanActivate{
   ) { }
 
   canActivate() {
-    if(localStorage.getItem('id_token') || sessionStorage.getItem('id_token') ){
+    if(this.reqService.isLoggedIn()){
       return true
     }
     else {
