@@ -6,7 +6,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 
 import {
-  MatButtonModule, MatCardModule, MatCheckbox, MatCheckboxModule, MatIconModule, MatInputModule, MatListModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule, MatListModule,
   MatSelectModule,
   MatSlideToggleModule,
   MatToolbarModule
