@@ -14,8 +14,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { RegisterCardComponent } from './register-card/register-card.component';
-import { CreateCommunityComponent } from './create-community/create-community.component';
 
 import {RequestService} from "./services/request.service";
 import {ValidatorService} from "./services/validator.service";
@@ -35,8 +33,6 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterCardComponent,
-    CreateCommunityComponent,
   ],
   imports: [
     BrowserModule,
