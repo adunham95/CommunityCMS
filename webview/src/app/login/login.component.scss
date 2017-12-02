@@ -16,3 +16,15 @@
   background: material-color('green', '600');
   color: #FFFFFF;
 }
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+.button-container {
+  margin-left: .0em;
+}

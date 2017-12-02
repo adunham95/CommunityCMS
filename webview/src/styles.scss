@@ -1,6 +1,10 @@
 @import "limelight";
-
+@import url('https://fonts.googleapis.com/css?family=Arimo|Didact+Gothic');
 body {
   margin: 0;
   background: grey;
+  font-family: 'Arimo', sans-serif;
+}
+h1 h2 h3 h4 h5 {
+  font-family: 'Didact Gothic', sans-serif;
 }
