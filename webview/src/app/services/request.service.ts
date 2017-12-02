@@ -48,9 +48,17 @@ export class RequestService {
     return this.http.post(this.urlChecker('/household/'+user.communityID+'/authentication'), user, {headers: headers})
   }
 
-  storeUserData(token, user){
-    localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+  storeUserData(token, user, type){
+    //IF remember me
+    if(type){
+      localStorage.setItem('id_token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+    //If dont remeber me
+    else {
+      sessionStorage.setItem('id_token', token);
+      sessionStorage.setItem('user', JSON.stringify(user));
+    }
     // this.authToken = token;
     // this.user = user;
   }

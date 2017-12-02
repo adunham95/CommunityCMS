@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   loginCommID: String;
   loginPassword: String;
   loginUsername: String;
+  stayLoggedIn: boolean;
 
   login(){
 
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit {
       userData = data;
       console.log(userData);
       if(userData.success){
-        this.reqService.storeUserData(userData.token, userData.HouseHold)
+        console.log(this.stayLoggedIn);
+        this.reqService.storeUserData(userData.token, userData.HouseHold, this.stayLoggedIn);
         this.router.navigate(['/']);
       }
       else {
