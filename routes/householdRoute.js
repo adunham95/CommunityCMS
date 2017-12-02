@@ -43,7 +43,7 @@ router.post('/:communityID/authentication', (req, res, next) => {
       if (err) {throw err}
       if(isMatch){
         const token = jwt.sign({data: HouseHoldInfo}, config.secret, {
-          expiresIn: 604800 //Week in seconds
+          expiresIn: 2592000 //Month in seconds
         });
 
         res.json({
