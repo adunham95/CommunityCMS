@@ -66,6 +66,19 @@ export class RequestService {
     // this.user = user;
   }
 
+  getLocalUserData(){
+    let userData;
+    if(localStorage.getItem('id_token')){
+      console.log("Token in local storeage");
+      userData = this.jwtHelper.decodeToken(localStorage.getItem('id_token'));
+    }
+    else if(sessionStorage.getItem('id_token')){
+      console.log("Token in session storage");
+      userData = this.jwtHelper.decodeToken(sessionStorage.getItem('id_token'));
+    }
+    return userData.data;
+  }
+
   isLoggedIn(){
     let token;
     let  loggedIn;

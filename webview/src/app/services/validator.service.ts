@@ -17,10 +17,17 @@ export class ValidatorService {
 
   validateHouseHold(household) {
     if (household.name == undefined || household.email == undefined || household.username == undefined || household.password == undefined) {
+      console.log("Not valid");
       return false
     }
     else {
-      return true
+      if(household.password === 'password' || household.password === 'Password'){
+        console.log("Use a stronger password");
+        return false
+      }
+      else{
+        return true
+      }
     }
   }
 
