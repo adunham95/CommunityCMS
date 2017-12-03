@@ -1,1 +1,16 @@
 @import "../enviroment";
+
+.mainContainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.contentContainer{
+  display: inline-flex;
+  flex-direction: column;
+  flex-basis: 75%;
+}
+
+.sidebarContainer{
+  flex-grow: 1;
+}
