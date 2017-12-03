@@ -3,7 +3,7 @@
   <h1>User Table Here</h1>
 </div>
 
-<mat-card class="card" *ngIf="sidebar">
+<div class="card" *ngIf="sidebar">
   <mat-list>
     <mat-list-item  *ngFor="let house of users">
       <h3 matLine> {{house.name}} </h3>
@@ -14,4 +14,4 @@
       </p>
     </mat-list-item>
   </mat-list>
-</mat-card>
+</div>
