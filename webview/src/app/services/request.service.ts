@@ -68,17 +68,25 @@ export class RequestService {
 
   isLoggedIn(){
     let token;
+    let  loggedIn;
     if(localStorage.getItem('id_token')){
       console.log("Token in local storeage");
       token = localStorage.getItem('id_token');
+      //If the token id not expired return true
+      loggedIn = (!this.jwtHelper.isTokenExpired(token));
     }
     else if(sessionStorage.getItem('id_token')){
       console.log("Token in session storage");
       token = sessionStorage.getItem('id_token');
+      //If the token id not expired return true
+      loggedIn = (!this.jwtHelper.isTokenExpired(token));
+    }
+    else{
+      console.log("Not logged in");
+      loggedIn = false;
     }
 
-    //Returns the opposite of the return
-    return (!this.jwtHelper.isTokenExpired(token));
+    return loggedIn;
   }
 
 }
