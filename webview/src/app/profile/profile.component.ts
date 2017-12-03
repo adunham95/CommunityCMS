@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from "../services/request.service";
 
 @Component({
@@ -8,13 +8,12 @@ import {RequestService} from "../services/request.service";
 })
 export class ProfileComponent implements OnInit {
 
+  @Input() currentUser: any;
+
   constructor(
-    private reqService: RequestService
   ) { }
 
   ngOnInit() {
-    this.currentUser = this.reqService.getLocalUserData()
-  }
 
-  currentUser;
+  }
 }
