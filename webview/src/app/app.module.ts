@@ -22,6 +22,7 @@ import {RequestService} from "./services/request.service";
 import {ValidatorService} from "./services/validator.service";
 import {DataService} from "./services/data.service";
 import {AuthGuardService} from "./guards/auth.guard";
+import { UsersCardComponent } from './users-card/users-card.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     RegisterCardComponent,
+    UsersCardComponent,
   ],
   imports: [
     BrowserModule,

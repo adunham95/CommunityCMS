@@ -51,6 +51,12 @@ export class RequestService {
     return this.http.post(this.urlChecker('/household/'+user.communityID+'/authentication'), user, {headers: headers})
   }
 
+  getAllUsersInCommunity(communityID){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this.urlChecker('/household/'+communityID+'/members'), {headers: headers})
+  }
+
   storeUserData(token, user, type){
     //IF remember me
     if(type){
