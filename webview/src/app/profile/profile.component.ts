@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RequestService} from "../services/request.service";
 
 @Component({
   selector: 'profile-card',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private reqService: RequestService
+  ) { }
 
   ngOnInit() {
+    this.currentUser = this.reqService.getLocalUserData()
   }
 
+  currentUser;
 }

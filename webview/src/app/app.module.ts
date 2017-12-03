@@ -25,6 +25,7 @@ import {AuthGuardService} from "./guards/auth.guard";
 import { UsersCardComponent } from './users-card/users-card.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { StatsCardComponent } from './stats-card/stats-card.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     UsersCardComponent,
     SidebarComponent,
     ProfileComponent,
+    StatsCardComponent,
   ],
   imports: [
     BrowserModule,
