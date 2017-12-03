@@ -14,11 +14,13 @@ export class UsersCardComponent implements OnInit {
 
   ngOnInit() {
     let user;
+    let houseHolds;
     user = this.reqService.getLocalUserData();
     console.log(user);
     this.reqService.getAllUsersInCommunity(user.communityID).subscribe(data=>{
       console.log(data);
-      this.users = data.Households;
+      houseHolds = data;
+      this.users = houseHolds.Households;
       console.log(this.users)
     });
   }
