@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from "../services/request.service";
 
 @Component({
@@ -7,6 +7,8 @@ import {RequestService} from "../services/request.service";
   styleUrls: ['./users-card.component.scss']
 })
 export class UsersCardComponent implements OnInit {
+
+  @Input() type: String;
 
   constructor(
     private reqService: RequestService
@@ -23,7 +25,18 @@ export class UsersCardComponent implements OnInit {
       this.users = houseHolds.Households;
       console.log(this.users)
     });
+    if(this.type === 'main'){
+      this.main = true
+    }
+    else if(this.type == 'sidebar'){
+      this.sidebar = true
+    }
   }
 
+
+
+  displayedColumns = ['name'];
   users;
+  main;
+  sidebar;
 }

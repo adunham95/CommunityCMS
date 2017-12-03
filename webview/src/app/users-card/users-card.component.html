@@ -1,16 +1,9 @@
-<!--<mat-card *ngFor="let house of users" class="card">-->
-  <!--<mat-toolbar>-->
-    <!--{{house.name}}-->
-  <!--</mat-toolbar>-->
-  <!--<mat-card-content>-->
-    <!--Some Data in the card-->
-  <!--</mat-card-content>-->
-  <!--&lt;!&ndash;<mat-card-actions>&ndash;&gt;-->
-    <!--&lt;!&ndash;<button mat-button>ITS A BUTTONNNN!</button>&ndash;&gt;-->
-  <!--&lt;!&ndash;</mat-card-actions>&ndash;&gt;-->
-<!--</mat-card>-->
+<div class="card mat-elevation-z3" *ngIf="main">
+ <!--TODO TABLE-->
+  <h1>User Table Here</h1>
+</div>
 
-<mat-card class="card">
+<mat-card class="card" *ngIf="sidebar">
   <mat-list>
     <mat-list-item  *ngFor="let house of users">
       <h3 matLine> {{house.name}} </h3>
