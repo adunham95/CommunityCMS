@@ -24,8 +24,8 @@ router.post('/new', (req, res, next) => {
     })
 });
 
-// Profile
-router.get('/profile/:name', (req, res, next) => {
+// Profile by name
+router.get('/profileName/:name', (req, res, next) => {
    const name = req.params.name;
    CommunityModel.getHouseHoldByName(name, (err, CommunityInfo) =>{
        if(err){
@@ -34,15 +34,26 @@ router.get('/profile/:name', (req, res, next) => {
        else {
            res.json({
                success: true,
-               community: {
-                   id: CommunityInfo._id,
-                   name: CommunityInfo.name,
-                   city: CommunityInfo.city,
-                   state: CommunityInfo.state
-               }
+               community: CommunityInfo
            })
        }
    })
+});
+
+//Profile by id
+router.get('/profileID/:id', (req, res, next) =>{
+    const id = req.params.id;
+    CommunityModel.getComunitybyID(id, (err, CommunityInfo) =>{
+        if(err){
+            res.json({success: false, msg: "Failed to get profile"})
+        }
+        else {
+            res.json({
+                success: true,
+                community: CommunityInfo
+            })
+        }
+    })
 });
 
 //Gets all Communities
@@ -60,5 +71,6 @@ router.get('/all', (req, res, next) =>{
         }
     })
 });
+
 
 module.exports = router;
