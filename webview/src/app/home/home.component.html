@@ -1,13 +1,13 @@
 <div class="mainContainer">
   <div class="contentContainer">
-    <stats-card></stats-card>
+    <stats-card *ngIf="isDataAvailable"  [users]="users"></stats-card>
     <register-card *ngIf="currentUser.admin"></register-card>
-    <users-card type="main"></users-card>
+    <users-card *ngIf="isDataAvailable"  type="main" [users]="users"></users-card>
   </div>
   <div class="sidebarContainer">
-    <profile-card [currentUser]="currentUser"></profile-card>
+    <profile-card *ngIf="isDataAvailable"  [currentUser]="currentUser"></profile-card>
     <!--<side-bar></side-bar>-->
-    <users-card type="sidebar"></users-card>
+    <users-card *ngIf="isDataAvailable"  type="sidebar" [users]="users"></users-card>
     <!--<register-card *ngIf="currentUser.admin"></register-card>-->
   </div>
 </div>

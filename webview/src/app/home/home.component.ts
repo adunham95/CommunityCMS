@@ -13,8 +13,20 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.currentUser = this.reqService.getLocalUserData()
+    this.isDataAvailable = false;
+    this.currentUser = this.reqService.getLocalUserData();
+
+    let houseHolds;
+    this.reqService.getAllUsersInCommunity(this.currentUser.communityID).subscribe(data=>{
+      houseHolds = data;
+      this.users = houseHolds.Households;
+      console.log(this.users);
+      this.isDataAvailable = true;
+    });
+
   }
 
+  isDataAvailable: boolean;
   currentUser;
+  users;
 }
