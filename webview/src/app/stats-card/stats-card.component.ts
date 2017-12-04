@@ -7,13 +7,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class StatsCardComponent implements OnInit {
 
-  @Input() users;
+  @Input() users = [];
 
   constructor() { }
 
   ngOnInit() {
-    this.userCount = this.users.length;
   }
 
-  userCount;
 }
