@@ -43,7 +43,7 @@ router.get('/profileName/:name', (req, res, next) => {
 //Profile by id
 router.get('/profileID/:id', (req, res, next) =>{
     const id = req.params.id;
-    CommunityModel.getComunitybyID(id, (err, CommunityInfo) =>{
+    CommunityModel.getCommunityByID(id, (err, CommunityInfo) =>{
         if(err){
             res.json({success: false, msg: "Failed to get profile"})
         }

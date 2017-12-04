@@ -25,7 +25,7 @@ module.exports.getHouseHoldByName = function (name, callback) {
     Community.findOne(query, callback);
 };
 
-module.exports.getComunitybyID = function (id, callback) {
+module.exports.getCommunityByID = function (id, callback) {
     Community.findById(id, callback);
 };
 
