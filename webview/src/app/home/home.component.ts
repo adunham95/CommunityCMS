@@ -17,15 +17,22 @@ export class HomeComponent implements OnInit {
     this.currentUser = this.reqService.getLocalUserData();
 
     let houseHolds;
+    let community;
     this.reqService.getAllUsersInCommunity(this.currentUser.communityID).subscribe(data=>{
       houseHolds = data;
       this.users = houseHolds.Households;
       console.log(this.users);
     });
+    this.reqService.getCommunityByID(this.currentUser.communityID).subscribe(data=>{
+      community = data;
+      this.community = community.community;
+      console.log(this.community);
+    });
     this.isDataAvailable = true;
   }
 
   isDataAvailable: boolean;
+  community;
   currentUser;
   users;
 }

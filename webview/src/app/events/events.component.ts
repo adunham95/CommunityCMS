@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class EventsComponent implements OnInit {
 
   @Input() type: String;
+  @Input() community;
 
   constructor() { }
 
