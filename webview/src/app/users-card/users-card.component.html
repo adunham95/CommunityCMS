@@ -1,9 +1,9 @@
-<div class="card mat-elevation-z3" *ngIf="main">
+<div class="card" *ngIf="main">
  <!--TODO TABLE-->
   <h1>User Table Here</h1>
 </div>
 
-<div class="card" *ngIf="sidebar">
+<div class="card sidebar" *ngIf="sidebar">
   <mat-list>
     <mat-list-item  *ngFor="let house of users">
       <h3 matLine> {{house.name}} </h3>
