@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
       registerReturn = data;
       if(registerReturn.success == true){
         //If Registered retrieve the community info
-        this.reqService.getCommunity(this.communityName).subscribe(data =>{
+        this.reqService.getCommunityByName(this.communityName).subscribe(data =>{
           communityInfo = data;
           if(communityInfo.success){
             console.log(communityInfo.community);
