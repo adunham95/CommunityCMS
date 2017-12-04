@@ -1,0 +1,14 @@
+<div class="card" *ngIf="sidebar">
+  <h3>Upcoming</h3>
+  <mat-list>
+    <mat-list-item  *ngFor="let event of events">
+      <h3 matLine> {{event.name}} </h3>
+      <h3 matLine> {{event.date}} </h3>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<!--TODO add calender dispplay-->
+<div class="card" *ngIf="main">
+  <h1>Calender</h1>
+</div>

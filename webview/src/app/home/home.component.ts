@@ -21,9 +21,8 @@ export class HomeComponent implements OnInit {
       houseHolds = data;
       this.users = houseHolds.Households;
       console.log(this.users);
-      this.isDataAvailable = true;
     });
-
+    this.isDataAvailable = true;
   }
 
   isDataAvailable: boolean;
