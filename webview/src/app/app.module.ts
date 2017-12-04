@@ -23,7 +23,6 @@ import {ValidatorService} from "./services/validator.service";
 import {DataService} from "./services/data.service";
 import {AuthGuardService} from "./guards/auth.guard";
 import { UsersCardComponent } from './users-card/users-card.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatsCardComponent } from './stats-card/stats-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -43,7 +42,6 @@ const appRoutes: Routes = [
     RegisterComponent,
     RegisterCardComponent,
     UsersCardComponent,
-    SidebarComponent,
     ProfileComponent,
     StatsCardComponent,
     NavBarComponent,

@@ -6,7 +6,6 @@
   </div>
   <div class="sidebarContainer">
     <profile-card *ngIf="isDataAvailable"  [currentUser]="currentUser"></profile-card>
-    <!--<side-bar></side-bar>-->
     <users-card *ngIf="isDataAvailable"  type="sidebar" [users]="users"></users-card>
     <!--<register-card *ngIf="currentUser.admin"></register-card>-->
   </div>
