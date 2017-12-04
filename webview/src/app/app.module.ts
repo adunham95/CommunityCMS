@@ -26,6 +26,7 @@ import { UsersCardComponent } from './users-card/users-card.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { StatsCardComponent } from './stats-card/stats-card.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent,canActivate: [AuthGuardService]},
@@ -45,6 +46,7 @@ const appRoutes: Routes = [
     SidebarComponent,
     ProfileComponent,
     StatsCardComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,

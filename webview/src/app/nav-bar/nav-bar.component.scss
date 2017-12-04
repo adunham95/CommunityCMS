@@ -1,0 +1,10 @@
+@import "~sass-material-colors";
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+}
+
+.logout{
+  background: material-color('deep-orange', '500');
+}

@@ -109,4 +109,9 @@ export class RequestService {
     return loggedIn;
   }
 
+  logOut(){
+    localStorage.clear();
+    sessionStorage.clear();
+  }
+
 }

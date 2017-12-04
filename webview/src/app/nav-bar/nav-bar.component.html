@@ -1,0 +1,5 @@
+<mat-toolbar color="primary" class="nav">
+  {{title}}
+  <span></span>
+  <button *ngIf="reqService.isLoggedIn()" mat-button (click)="logout()" class="logout">Log Out</button>
+</mat-toolbar>
