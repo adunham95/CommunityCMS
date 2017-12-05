@@ -45,3 +45,6 @@ module.exports.getAllCommunities= function (callback) {
     Community.find(callback);
 };
 
+module.exports.addEvent = function (communityID, event, callback) {
+    Community.findByIdAndUpdate(communityID, {$push: {events: event}}, callback);
+};

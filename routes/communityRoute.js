@@ -73,4 +73,25 @@ router.get('/all', (req, res, next) =>{
 });
 
 
+//Events
+router.post('/events/new', (req, res, next) =>{
+    let communityID = req.body.communityID;
+    let newEvent = {
+        name: req.body.name,
+        description: req.body.description,
+        startDate: req.body.startDate,
+        createdByID: req.body.createdByID
+    };
+
+    CommunityModel.addEvent(communityID, newEvent, (err) =>{
+        if(err){
+            res.json({success: false, msg: "Failed to register Event", err: err})
+        }
+        else {
+            res.json({success: true, msg: "Registered Event"})
+        }
+    });
+});
+
+
 module.exports = router;
