@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatListModule,
+  MatNativeDateModule,
   MatSelectModule,
   MatSlideToggleModule, MatTableModule,
   MatToolbarModule
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     MatListModule,
     HttpClientModule,
     MatTableModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [RequestService, ValidatorService, DataService, AuthGuardService],
   bootstrap: [AppComponent]
