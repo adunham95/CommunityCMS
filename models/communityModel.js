@@ -15,7 +15,15 @@ const CommunitySchema = mongoose.Schema({
     state: {
         type: String,
         required: true
-    }
+    },
+    events: [
+        {
+            name: String,
+            description: String,
+            startDate: Date,
+            createdByID: String
+        }
+    ],
 });
 
 const Community = module.exports = mongoose.model('Community', CommunitySchema);
