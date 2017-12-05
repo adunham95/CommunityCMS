@@ -1,6 +1,13 @@
 @import "../enviroment";
+@import '~sass-material-colors';
 
 p {
   //word-wrap: break-word;
   text-overflow: clip;;
 }
+
+.new{
+  background: material-color('blue', '600');
+  color: #FFFFFF;
+}
+

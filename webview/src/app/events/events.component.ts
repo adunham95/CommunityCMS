@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {RequestService} from "../services/request.service";
 
 @Component({
   selector: 'events-card',
@@ -10,7 +11,9 @@ export class EventsComponent implements OnInit {
   @Input() type: String;
   @Input() community;
 
-  constructor() { }
+  constructor(
+    private reqService: RequestService,
+  ) { }
 
   ngOnInit() {
     if(this.type === 'main'){
@@ -34,5 +37,35 @@ export class EventsComponent implements OnInit {
   sidebar;
 
   events;
+
+  //New Event
+  eventName;
+  eventDate;
+  eventDescription;
+
+  newEvent(){
+    let currentUser = this.reqService.getLocalUserData();
+
+    let event = {
+      "name": this.eventName,
+      "communityID": currentUser.communityID,
+      "description": this.eventDescription,
+      "startDate": this.eventDate,
+      "createdByID": currentUser._id
+    };
+
+    console.log(event);
+    let newData;
+    this.reqService.newEvent(event).subscribe(data => {
+      newData = data;
+      if(newData.success){
+        console.log(newData)
+      }
+      else{
+        console.log(newData)
+      }
+    })
+  }
+
 
 }

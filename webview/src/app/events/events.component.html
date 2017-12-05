@@ -1,4 +1,22 @@
 <div class="card" *ngIf="sidebar">
+  <div class="newEvent">
+    <h3>New Event</h3>
+    <mat-form-field class="">
+      <input matInput type="text" placeholder="Event Name" [(ngModel)]="eventName">
+    </mat-form-field>
+    <mat-form-field class="">
+      <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
+                matAutosizeMaxRows="5" [(ngModel)]="eventDescription">
+      </textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp3" placeholder="Event Date" disabled [(ngModel)]="eventDate">
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <button mat-button class="new" (click)="newEvent()">New Event</button>
+  </div>
+
   <h3>Upcoming</h3>
   <mat-list>
     <mat-list-item  *ngFor="let event of events">

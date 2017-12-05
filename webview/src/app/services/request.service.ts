@@ -96,13 +96,13 @@ export class RequestService {
     let token;
     let  loggedIn;
     if(localStorage.getItem('id_token')){
-      console.log("Token in local storeage");
+      // console.log("Token in local storeage");
       token = localStorage.getItem('id_token');
       //If the token id not expired return true
       loggedIn = (!this.jwtHelper.isTokenExpired(token));
     }
     else if(sessionStorage.getItem('id_token')){
-      console.log("Token in session storage");
+      // console.log("Token in session storage");
       token = sessionStorage.getItem('id_token');
       //If the token id not expired return true
       loggedIn = (!this.jwtHelper.isTokenExpired(token));
@@ -120,4 +120,10 @@ export class RequestService {
     sessionStorage.clear();
   }
 
+  //Event
+  newEvent(event){
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    return this.http.post(this.urlChecker('/community/events/new'), event, {headers: headers})
+  }
 }
