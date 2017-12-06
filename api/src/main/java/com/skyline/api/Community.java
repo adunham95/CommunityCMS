@@ -10,10 +10,10 @@ public class Community {
     @Id
     private String id;
 
-    private String name;
-    private String city;
-    private String state;
-    private List<Event> events;
+    public String name;
+    public String city;
+    public String state;
+    public List<Event> events;
 
     @Override
     public String toString() {
