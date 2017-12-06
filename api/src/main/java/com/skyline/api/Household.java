@@ -3,16 +3,16 @@ package com.skyline.api;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "household")
+@Document(collection = "households")
 public class Household {
     @Id
     private String id;
-    private String name;
-    private String communityID;
-    private Boolean admin;
-    private String email;
-    private String username;
-    private String password;
+    public String name;
+    public String communityID;
+    public Boolean admin;
+    public String email;
+    public String username;
+    public String password;
 
     public Household(String name, String communityID, Boolean admin, String email, String username, String password) {
         this.name = name;
