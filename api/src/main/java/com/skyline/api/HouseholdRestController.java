@@ -1,6 +1,5 @@
 package com.skyline.api;
 
-import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +27,17 @@ public class HouseholdRestController {
     //TODO Auth
     @RequestMapping(method = RequestMethod.POST, value = "/{communityID}/authentication")
     ResponseEntity<Object> auth(@PathVariable String communityID, @RequestBody Household input){
-        Household result = householdRepository.save(new Household(input.name, input.admin, input.email, input.username, input.password, communityID));
+        Household result = householdRepository.findByCommunityIDAndUsername(communityID, input.username);
+        if(!Password.checkPassword(input.password, result.password)){
+            result = null;
+        }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
+
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/profileName/{name}", headers="Accept=application/json")
-    ResponseEntity<Object> getByName(@PathVariable String name){
-        Household result = this.householdRepository.findByUsername(name);
+    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profileName/{name}", headers="Accept=application/json")
+    ResponseEntity<Object> getByName(@PathVariable String communityID, @PathVariable String name){
+        Household result = this.householdRepository.findByCommunityIDAndUsername(communityID, name);
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface HouseholdRepository extends MongoRepository<Household, String>{
     public Household findById(String id);
-    public Household findByUsername(String username);
+    public Household findByCommunityIDAndUsername(String username, String communityID);
     public List<Household> findAllByCommunityID(String communityID);
 }
