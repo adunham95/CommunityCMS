@@ -14,7 +14,7 @@ public class Household {
     public String username;
     public String password;
 
-    public Household(String name, String communityID, Boolean admin, String email, String username, String password) {
+    public Household(String name, Boolean admin, String email, String username, String password, String communityID) {
         this.name = name;
         this.communityID = communityID;
         this.admin = admin;
@@ -23,15 +23,17 @@ public class Household {
         this.password = password;
     }
 
+    public Household(){}
+
     @Override
     public String toString() {
         return "Household{" +
                 "name='" + name + '\'' +
-                ", communityID='" + communityID + '\'' +
-                ", admin=" + admin +
+                ", admin=" + admin + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", communityID='" + communityID + '\'' +
                 '}';
     }
 
