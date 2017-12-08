@@ -35,15 +35,15 @@ public class HouseholdRestController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profileName/{name}", headers="Accept=application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profile/{name}", headers="Accept=application/json")
     ResponseEntity<Object> getByName(@PathVariable String communityID, @PathVariable String name){
         Household result = this.householdRepository.findByCommunityIDAndUsername(communityID, name);
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/profileID/{id}", headers="Accept=application/json")
-    ResponseEntity<Object> getById(@PathVariable String id){
-        Household result = this.householdRepository.findById(id);
+    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profileID/{id}", headers="Accept=application/json")
+    ResponseEntity<Object> getById(@PathVariable String communityID,  @PathVariable String id){
+        Household result = this.householdRepository.findByCommunityIDAndId(communityID, id);
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 

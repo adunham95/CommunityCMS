@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface HouseholdRepository extends MongoRepository<Household, String>{
-    public Household findById(String id);
-    public Household findByCommunityIDAndUsername(String username, String communityID);
+    public Household findByCommunityIDAndId(String communityID, String id);
+    public Household findByCommunityIDAndUsername(String communityID, String username);
     public List<Household> findAllByCommunityID(String communityID);
 }
