@@ -31,6 +31,8 @@ public class Community {
         this.state = state;
     }
 
+    public Community(){}
+
     public String getId() {
         return id;
     }
