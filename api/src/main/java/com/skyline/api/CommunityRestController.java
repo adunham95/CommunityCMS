@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/community")
 public class CommunityRestController {
     private CommunityRepository communityRepository;
-    private String response;
 
     @Autowired
     CommunityRestController(CommunityRepository communityRepository){
