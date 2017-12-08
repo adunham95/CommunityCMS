@@ -1,5 +1,6 @@
 package com.skyline.api;
 
+import com.mongodb.util.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/household")
 public class HouseholdRestController {
     private HouseholdRepository householdRepository;
@@ -17,16 +19,16 @@ public class HouseholdRestController {
         this.householdRepository = householdRepository;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/{communityID}/register")
+    @RequestMapping(method = RequestMethod.POST, value = "/{communityID}/register", consumes = {"application/json"})
     ResponseEntity<Object> add(@PathVariable String communityID, @RequestBody Household input){
-        Household result = householdRepository.save(new Household(input.name, input.communityID, input.admin, input.email, input.username, input.password));
-        return new ResponseEntity<Object>(result, HttpStatus.OK);
+        Household houseResult = householdRepository.save(new Household(input.name, input.admin, input.email, input.username, Password.hashPassword(input.password), communityID));
+        return new ResponseEntity<Object>(houseResult, HttpStatus.OK);
     }
 
     //TODO Auth
     @RequestMapping(method = RequestMethod.POST, value = "/{communityID}/authentication")
     ResponseEntity<Object> auth(@PathVariable String communityID, @RequestBody Household input){
-        Household result = householdRepository.save(new Household(input.name, input.communityID, input.admin, input.email, input.username, input.password));
+        Household result = householdRepository.save(new Household(input.name, input.admin, input.email, input.username, input.password, communityID));
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 
@@ -44,7 +46,7 @@ public class HouseholdRestController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/members", headers="Accept=application/json")
     ResponseEntity<Object> getCommunityMemebers(@PathVariable String communityID){
-        Household result = this.householdRepository.findAllByCommunityID(communityID);
+        List<Household> result = this.householdRepository.findAllByCommunityID(communityID);
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 
