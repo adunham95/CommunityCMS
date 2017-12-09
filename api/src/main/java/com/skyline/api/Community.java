@@ -69,7 +69,7 @@ public class Community {
         return events;
     }
 
-    public void setEvents(List<Event> events) {
-        this.events = events;
+    public void setEvents(Event event) {
+        this.events.add(event);
     }
 }

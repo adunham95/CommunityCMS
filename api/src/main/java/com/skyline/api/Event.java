@@ -6,10 +6,10 @@ import java.util.Date;
 
 public class Event {
     @Id
-    private String name;
-    private String description;
-    private Date startDate;
-    private String createdBy;
+    public String name;
+    public String description;
+    public Date startDate;
+    public String createdBy;
 
     public Event(String name, String description, Date startDate, String createdBy){
         this.name = name;
@@ -17,6 +17,8 @@ public class Event {
         this.startDate = startDate;
         this.createdBy = createdBy;
     }
+
+    public Event(){}
 
     @Override
     public String toString() {
