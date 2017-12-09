@@ -23,28 +23,38 @@ public class CommunityRestController {
     @RequestMapping(method = RequestMethod.POST, value = "/new", headers="Accept=application/json")
     ResponseEntity<Object> add(@RequestBody Community input){
         Community result = communityRepository.save(new Community(input.name, input.city, input.state));
+        if(result == null){
+            throw new CommunityException("Could not create new community");
+        }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/profileName/{name}", headers="Accept=application/json")
     ResponseEntity<Object> getByName(@PathVariable String name){
         Community result = this.communityRepository.findCommunitiesByName(name);
+        if(result == null){
+            throw new CommunityException("Could not retrieve community");
+        }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/profileID/{id}", headers="Accept=application/json")
     ResponseEntity<Object> getById(@PathVariable String id){
         Community result = this.communityRepository.findCommunitiesByid(id);
+        if(result == null){
+            throw new CommunityException("Could not retrieve community");
+        }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/profile/all", headers="Accept=application/json")
     ResponseEntity<Object> getAll(){
         List<Community> result = this.communityRepository.findAll();
+        if(result == null){
+            throw new CommunityException("Could not get all communities");
+        }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
-
-
 
 
 
