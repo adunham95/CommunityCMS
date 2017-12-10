@@ -3,6 +3,9 @@ package com.skyline.api;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Document(collection = "communities")
@@ -13,7 +16,6 @@ public class Community {
     public String name;
     public String city;
     public String state;
-    public List<Event> events;
 
     @Override
     public String toString() {
@@ -21,7 +23,6 @@ public class Community {
                 ", name='" + name + '\'' +
                 ", city=" + city + '\'' +
                 ", state=" + state + '\'' +
-                ", event=[] \'" +
                 '}';
     }
 
@@ -63,13 +64,5 @@ public class Community {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(Event event) {
-        this.events.add(event);
     }
 }
