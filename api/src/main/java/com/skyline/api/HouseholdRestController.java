@@ -47,29 +47,37 @@ public class HouseholdRestController {
 
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profileUsername/{username}", headers="Accept=application/json")
-    ResponseEntity<Object> getByName(@PathVariable String communityID, @PathVariable String username){
-        Household result = this.householdRepository.findByCommunityIDAndUsername(communityID, username);
-        if(result == null){
-            throw new CommunityException("User or Community Not Found");
-        }
-        return new ResponseEntity<Object>(result, HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profileID/{id}", headers="Accept=application/json")
-    ResponseEntity<Object> getById(@PathVariable String communityID,  @PathVariable String id){
-        Household result = this.householdRepository.findByCommunityIDAndId(communityID, id);
-        if(result == null){
-            throw new CommunityException("User or Community Not Found");
-        }
-        return new ResponseEntity<Object>(result, HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/members", headers="Accept=application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profile/all", headers="Accept=application/json")
     ResponseEntity<Object> getCommunityMemebers(@PathVariable String communityID){
         List<Household> result = this.householdRepository.findAllByCommunityID(communityID);
         if(result == null){
             throw new CommunityException("Could not retrieve users");
+        }
+        return new ResponseEntity<Object>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{communityID}/profile", headers="Accept=application/json")
+    @ResponseBody
+    ResponseEntity<Object> getByName(
+            @PathVariable String communityID,
+            @RequestParam(name="username", required = false) String username,
+            @RequestParam(name="id", required = false) String id,
+            @RequestParam(name="name", required = false) String name){
+        Household result;
+        if(username != null){
+            result = this.householdRepository.findByCommunityIDAndUsername(communityID, username);
+        }
+        else if(id!=null){
+            result = this.householdRepository.findByCommunityIDAndId(communityID, id);
+        }
+        else if(name!=null){
+            result = this.householdRepository.findByCommunityIDAndName(communityID, name);
+        }
+        else {
+            throw new CommunityException("Username or ID not defined");
+        }
+        if(result == null){
+            throw new CommunityException("User Not Found. ID: " + id + ". Username: " + username);
         }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
