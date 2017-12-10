@@ -1,18 +1,23 @@
 package com.skyline.api;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
+@Document(collection = "events")
 public class Event {
     @Id
+    public String id;
     public String name;
+    public String communityID;
     public String description;
     public Date startDate;
     public String createdBy;
 
-    public Event(String name, String description, Date startDate, String createdBy){
+    public Event(String name, String communityID, String description, Date startDate, String createdBy){
         this.name = name;
+        this.communityID = communityID;
         this.description = description;
         this.startDate = startDate;
         this.createdBy = createdBy;
@@ -60,5 +65,21 @@ public class Event {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCommunityID() {
+        return communityID;
+    }
+
+    public void setCommunityID(String communityID) {
+        this.communityID = communityID;
     }
 }
