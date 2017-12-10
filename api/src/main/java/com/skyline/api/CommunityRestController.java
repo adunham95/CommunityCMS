@@ -14,12 +14,10 @@ import java.util.List;
 @RequestMapping("/community")
 public class CommunityRestController {
     private CommunityRepository communityRepository;
-//    private EventRepository eventRepository;
 
     @Autowired
     CommunityRestController(CommunityRepository communityRepository, EventRepository eventRepository){
         this.communityRepository = communityRepository;
-//        this.eventRepository = eventRepository;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/new", headers="Accept=application/json")
@@ -49,32 +47,4 @@ public class CommunityRestController {
         }
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
-
-//    @RequestMapping(method = RequestMethod.GET, value = "/{id}/events/all", headers="Accept=application/json")
-//    ResponseEntity<Object> getEvents(@PathVariable String id){
-//        Community result = this.communityRepository.findCommunitiesByid(id);
-//        if(result == null){
-//            throw new CommunityException("Could not retrieve Events");
-//        }
-//        return new ResponseEntity<Object>(result.events, HttpStatus.OK);
-//    }
-
-//    @RequestMapping(method = RequestMethod.POST, value = "/{id}/events/new", headers="Accept=application/json")
-//    ResponseEntity<Object> saveEvent(@PathVariable String id, @RequestBody Event input){
-//        Community commResult = this.communityRepository.findCommunityByIdOrName(id, null);
-//        if(commResult == null){
-//            throw new CommunityException("Could not find community");
-//        }
-//        commResult.setEvents(new Event(input.name, input.description, input.startDate, input.createdBy));
-//        Community result = this.communityRepository.save(commResult);
-//        if(result == null){
-//            throw new CommunityException("Could not add events");
-//        }
-//        return new ResponseEntity<Object>(result, HttpStatus.OK);
-//    }
-
-
-
-
-
 }
