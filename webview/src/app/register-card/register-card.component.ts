@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RequestService} from "../services/request.service";
 import {ValidatorService} from "../services/validator.service";
 
@@ -8,6 +8,8 @@ import {ValidatorService} from "../services/validator.service";
   styleUrls: ['./register-card.component.scss']
 })
 export class RegisterCardComponent implements OnInit {
+
+  @Output() reloadUsers = new EventEmitter<String>();
 
   constructor(
     private reqService: RequestService,
@@ -53,14 +55,20 @@ export class RegisterCardComponent implements OnInit {
       console.log(houseHoldReturn);
       if(houseHoldReturn.id != null){
         console.log("Household registered");
-        //ANNOUNCE GLOBAL EVENT TO RESYNC
+        this.name = "";
+        this.admin = false;
+        this.email = "";
+        this.username = "";
+        this.password = "";
+
+        this.reloadUsers.emit("Reload");
+
       }
       else{
         console.log(houseHoldReturn.msg);
         console.log(houseHoldReturn.error);
       }
     });
-
 
   }
 
