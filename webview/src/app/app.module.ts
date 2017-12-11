@@ -49,7 +49,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     StatsCardComponent,
     NavBarComponent,
-    EventsComponent
+    EventsComponent,
+
   ],
   imports: [
     BrowserModule,
