@@ -6,7 +6,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldControl, MatFormFieldModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatExpansionModule, MatFormFieldControl,
+  MatFormFieldModule,
   MatIconModule,
   MatInputModule, MatListModule,
   MatNativeDateModule,
@@ -71,7 +72,8 @@ const appRoutes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule
   ],
   providers: [RequestService, ValidatorService, DataService, AuthGuardService],
   bootstrap: [AppComponent]

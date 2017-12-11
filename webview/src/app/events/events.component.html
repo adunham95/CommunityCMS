@@ -1,32 +1,43 @@
-<div class="card" *ngIf="sidebar">
-  <div class="newEvent">
-    <h3>New Event</h3>
-    <form #eventForm="ngForm">
-      <mat-form-field class="">
-        <input matInput type="text" placeholder="Event Name" [(ngModel)]="eventName" name="eventName">
-      </mat-form-field>
-      <mat-form-field class="">
+<mat-expansion-panel class="card" *ngIf="sidebar">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      New Event
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <form #eventForm="ngForm">
+    <mat-form-field class="">
+      <input matInput type="text" placeholder="Event Name" [(ngModel)]="eventName" name="eventName">
+    </mat-form-field>
+    <mat-form-field class="">
       <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
                 matAutosizeMaxRows="5" [(ngModel)]="eventDescription" name="eventDescription">
-      </textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput [matDatepicker]="dp3" placeholder="Event Date" disabled [(ngModel)]="eventDate" name="eventDate">
-        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-      </mat-form-field>
-      <button mat-button class="new" (click)="newEvent(eventForm)">New Event</button>
-    </form>
-  </div>
 
-  <h3>Upcoming</h3>
+      </textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="dp3" placeholder="Event Date" disabled [(ngModel)]="eventDate" name="eventDate">
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <button mat-button class="new" (click)="newEvent(eventForm)">New Event</button>
+  </form>
+</mat-expansion-panel>
+<mat-expansion-panel class="card" *ngIf="sidebar">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Current Events
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
   <mat-list>
     <mat-list-item  *ngFor="let event of events">
       <h3 matLine> {{event.name}} </h3>
       <h3 matLine> {{event.startDate | date}} </h3>
     </mat-list-item>
   </mat-list>
-</div>
+
+</mat-expansion-panel>
 
 <!--TODO add calender dispplay-->
 <div class="card" *ngIf="main">
