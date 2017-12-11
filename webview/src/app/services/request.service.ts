@@ -31,13 +31,13 @@ export class RequestService {
   getCommunityByName(communityName){
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    return this.http.get(this.urlChecker('/community/profileName/' + communityName), {headers: headers})
+    return this.http.get(this.urlChecker('/community/profile?name=' + communityName), {headers: headers})
   }
 
   getCommunityByID(communityID){
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    return this.http.get(this.urlChecker('/community/profileID/' + communityID), {headers: headers})
+    return this.http.get(this.urlChecker('/community/profile?id=' + communityID), {headers: headers})
   }
 
   registerUser(communityID, houseHoldBody){
@@ -49,7 +49,7 @@ export class RequestService {
   getCommmunites(){
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    return this.http.get(this.urlChecker('/community/all'), {headers: headers})
+    return this.http.get(this.urlChecker('/community/profile/all'), {headers: headers})
   }
 
   authenticateUser(user){
@@ -61,19 +61,19 @@ export class RequestService {
   getAllUsersInCommunity(communityID){
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.urlChecker('/household/'+communityID+'/members'), {headers: headers})
+    return this.http.get(this.urlChecker('/household/'+communityID+'/profile/all'), {headers: headers})
   }
 
-  storeUserData(token, user, type){
+  storeUserData(user, type){
     //IF remember me
     if(type){
-      localStorage.setItem('id_token', token);
       localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('communityID', user.communityID);
     }
     //If don't remember me
     else {
-      sessionStorage.setItem('id_token', token);
       sessionStorage.setItem('user', JSON.stringify(user));
+      sessionStorage.setItem('communityID', user.communityID);
     }
     // this.authToken = token;
     // this.user = user;
@@ -81,34 +81,44 @@ export class RequestService {
 
   getLocalUserData(){
     let userData;
-    if(localStorage.getItem('id_token')){
+    if(localStorage.getItem('user')){
       console.log("Token in local storeage");
-      userData = this.jwtHelper.decodeToken(localStorage.getItem('id_token'));
+      userData = JSON.parse(localStorage.getItem('user'));
+      // userData = this.jwtHelper.decodeToken(localStorage.getItem('id_token'));
     }
-    else if(sessionStorage.getItem('id_token')){
+    else if(sessionStorage.getItem('user')){
       console.log("Token in session storage");
-      userData = this.jwtHelper.decodeToken(sessionStorage.getItem('id_token'));
+      userData = JSON.parse(sessionStorage.getItem('user'));
+      // userData = this.jwtHelper.decodeToken(sessionStorage.getItem('id_token'));
     }
-    return userData.data;
+    return userData;
+  }
+
+  getCommunityID(){
+    let commID;
+    if(localStorage.getItem('communityID')){
+      console.log("Token in local storeage");
+      commID = localStorage.getItem('communityID');
+    }
+    else if(sessionStorage.getItem('communityID')){
+      console.log("Token in session storage");
+      commID = sessionStorage.getItem('communityID');
+    }
+    return commID;
   }
 
   isLoggedIn(){
     let token;
     let  loggedIn;
-    if(localStorage.getItem('id_token')){
+    if(localStorage.getItem('user')){
       // console.log("Token in local storeage");
-      token = localStorage.getItem('id_token');
-      //If the token id not expired return true
-      loggedIn = (!this.jwtHelper.isTokenExpired(token));
+      loggedIn = true;
     }
-    else if(sessionStorage.getItem('id_token')){
+    else if(sessionStorage.getItem('user')){
       // console.log("Token in session storage");
-      token = sessionStorage.getItem('id_token');
-      //If the token id not expired return true
-      loggedIn = (!this.jwtHelper.isTokenExpired(token));
+      loggedIn = true;
     }
     else{
-      console.log("Not logged in");
       loggedIn = false;
     }
 
@@ -124,6 +134,6 @@ export class RequestService {
   newEvent(event){
     let headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json');
-    return this.http.post(this.urlChecker('/community/events/new'), event, {headers: headers})
+    return this.http.post(this.urlChecker('/event/new'), event, {headers: headers})
   }
 }

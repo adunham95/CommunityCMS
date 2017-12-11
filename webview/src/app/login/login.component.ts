@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     this.reqService.getCommmunites().subscribe(data =>{
       let myData;
       myData = data;
-      this.communities = myData.communities;
+      this.communities = myData;
       console.log(this.communities);
     })
   }
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   loginCommID: String;
   loginPassword: String;
   loginUsername: String;
-  stayLoggedIn: boolean;
+  stayLoggedIn = false;
 
   login(){
 
@@ -37,14 +37,15 @@ export class LoginComponent implements OnInit {
       password: this.loginPassword
     };
 
+    console.log(user);
     let userData;
 
     this.reqService.authenticateUser(user).subscribe(data =>{
       userData = data;
       console.log(userData);
-      if(userData.success){
+      if(userData.id != null){
         console.log(this.stayLoggedIn);
-        this.reqService.storeUserData(userData.token, userData.HouseHold, this.stayLoggedIn);
+        this.reqService.storeUserData(userData, this.stayLoggedIn);
         this.router.navigate(['/']);
       }
       else {

@@ -50,14 +50,17 @@ export class RegisterCardComponent implements OnInit {
     let houseHoldReturn;
     this.reqService.registerUser(currentUser.communityID, householdBody).subscribe(data =>{
       houseHoldReturn = data;
-      if(houseHoldReturn.success){
+      console.log(houseHoldReturn);
+      if(houseHoldReturn.id != null){
         console.log("Household registered");
+        //ANNOUNCE GLOBAL EVENT TO RESYNC
       }
       else{
         console.log(houseHoldReturn.msg);
         console.log(houseHoldReturn.error);
       }
     });
+
 
   }
 

@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
 
   states = [];
 
+  errorMessage;
+
   //Community Info
   communityName: String;
   communityState: String;
@@ -55,12 +57,12 @@ export class RegisterComponent implements OnInit {
     };
     console.log(householdBody);
     let registerReturn;
-    let communityInfo;
     let houseHoldReturn;
 
     //Validates Community Data
     if(!this.validateService.validateCommunity(communityBody)){
-      console.log("All community data not provided")
+      this.errorMessage = "All community data not provided";
+      console.log(this.errorMessage)
     }
 
     //Validate Household data
@@ -78,28 +80,20 @@ export class RegisterComponent implements OnInit {
     //Registers community with the server
     this.reqService.registerCommunity(communityBody).subscribe(data => {
       registerReturn = data;
-      if(registerReturn.success == true){
-        //If Registered retrieve the community info
-        this.reqService.getCommunityByName(this.communityName).subscribe(data =>{
-          communityInfo = data;
-          if(communityInfo.success){
-            console.log(communityInfo.community);
-            householdBody.communityID = communityInfo.community.id;
-            console.log(householdBody);
-            //Registers the household with communityID
-            this.reqService.registerUser(communityInfo.community.id, householdBody).subscribe(data =>{
-              houseHoldReturn = data;
-              if(houseHoldReturn.success){
-                console.log("Household registered");
-                this.router.navigate(['/login']);
-              }
-              else{
-                console.log(houseHoldReturn.msg);
-                console.log(houseHoldReturn.error);
-              }
-            })
+      console.log(registerReturn);
+      if(registerReturn.id !=null){
+        householdBody.communityID = registerReturn.id;
+
+        this.reqService.registerUser(registerReturn.id, householdBody).subscribe(data =>{
+          houseHoldReturn = data;
+          if(houseHoldReturn.id !=null){
+            console.log("Household registered");
+            this.router.navigate(['/login']);
           }
-          else{console.log(communityInfo.msg)}
+          else{
+            console.log(houseHoldReturn.msg);
+            console.log(houseHoldReturn.error);
+          }
         })
       }
       else{console.log(registerReturn.msg)}

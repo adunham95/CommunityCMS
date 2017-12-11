@@ -8,6 +8,10 @@ export class DataService {
   states(){
     return [
       {
+        "name": "TEST",
+        "abbreviation": "TEST"
+      },
+      {
         "name": "Alabama",
         "abbreviation": "AL"
       },
