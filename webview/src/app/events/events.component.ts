@@ -16,22 +16,15 @@ export class EventsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadEvents();
+
     if(this.type === 'main'){
       this.main = true
     }
     else if(this.type == 'sidebar'){
       this.sidebar = true
     }
-    this.events = [
-      {
-        'name': 'Event One',
-        'date': '1/2/34'
-      },
-      {
-        'name': 'Event Two',
-        'date': '1/2/34'
-      }
-    ]
+    this.events = []
   }
   main;
   sidebar;
@@ -51,14 +44,16 @@ export class EventsComponent implements OnInit {
       "communityID": currentUser.communityID,
       "description": this.eventDescription,
       "startDate": this.eventDate,
-      "createdByID": currentUser._id
+      "createdByID": currentUser.id
     };
 
     console.log(event);
     let newData;
     this.reqService.newEvent(event).subscribe(data => {
       newData = data;
-      if(newData.success){
+      if(newData.id !=null){
+        console.log("Created successfully");
+        this.loadEvents();
         console.log(newData)
       }
       else{
@@ -67,5 +62,11 @@ export class EventsComponent implements OnInit {
     })
   }
 
+  loadEvents(){
+    this.reqService.getEvents(this.reqService.getCommunityID()).subscribe(data =>{
+      this.events = data;
+      console.log(this.events)
+    });
+  }
 
 }

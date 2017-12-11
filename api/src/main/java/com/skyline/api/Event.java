@@ -29,6 +29,7 @@ public class Event {
     public String toString() {
         return "Event{" +
                 "name='" + name + '\'' +
+                ", communityID=" + communityID + '\'' +
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", createdBy='" + createdBy + '\'' +

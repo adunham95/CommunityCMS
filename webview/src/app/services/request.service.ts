@@ -136,4 +136,10 @@ export class RequestService {
     headers.set('Content-Type', 'application/json');
     return this.http.post(this.urlChecker('/event/new'), event, {headers: headers})
   }
+
+  getEvents(communityID){
+    let headers = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    return this.http.get(this.urlChecker('/event/'+communityID+'/all'), {headers: headers})
+  }
 }
