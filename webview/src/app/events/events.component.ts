@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from "../services/request.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'events-card',
@@ -36,7 +37,7 @@ export class EventsComponent implements OnInit {
   eventDate;
   eventDescription;
 
-  newEvent(){
+  newEvent(form: NgForm){
     let currentUser = this.reqService.getLocalUserData();
 
     let event = {
@@ -55,6 +56,7 @@ export class EventsComponent implements OnInit {
         console.log("Created successfully");
         this.loadEvents();
         console.log(newData)
+        form.reset();
       }
       else{
         console.log(newData)
@@ -65,7 +67,7 @@ export class EventsComponent implements OnInit {
   loadEvents(){
     this.reqService.getEvents(this.reqService.getCommunityID()).subscribe(data =>{
       this.events = data;
-      console.log(this.events)
+      console.log(this.events);
     });
   }
 

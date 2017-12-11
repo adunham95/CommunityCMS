@@ -3,22 +3,24 @@
     <mat-card-title>Register Account</mat-card-title>
     <mat-card-subtitle>Skyline CRM</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
-    <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="Name" [(ngModel)]="name">
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="E-mail" [(ngModel)]="email">
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="Username" [(ngModel)]="username">
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="Password" [(ngModel)]="password">
-    </mat-form-field>
-    <mat-slide-toggle [(ngModel)]="admin">Enable admin privileges for this account?</mat-slide-toggle>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="createAccount()">CREATE ACCOUNT</button>
-  </mat-card-actions>
+  <form #newUser="ngForm">
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Name" [(ngModel)]="name" name="name">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="E-mail" [(ngModel)]="email"  name="email">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Username" [(ngModel)]="username"  name="username">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password">
+      </mat-form-field>
+      <mat-slide-toggle [(ngModel)]="admin" name="admin">Enable admin privileges for this account?</mat-slide-toggle>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="createAccount(newUser)">CREATE ACCOUNT</button>
+    </mat-card-actions>
+  </form>
 </mat-card>

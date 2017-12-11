@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {
-  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule, MatListModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldControl, MatFormFieldModule,
+  MatIconModule,
+  MatInputModule, MatListModule,
   MatNativeDateModule,
   MatSelectModule,
   MatSlideToggleModule, MatTableModule,
@@ -47,7 +49,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     StatsCardComponent,
     NavBarComponent,
-    EventsComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatTableModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [RequestService, ValidatorService, DataService, AuthGuardService],
   bootstrap: [AppComponent]

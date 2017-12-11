@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RequestService} from "../services/request.service";
 import {ValidatorService} from "../services/validator.service";
+import {FormControl, FormGroup, NgForm} from "@angular/forms";
 
 @Component({
   selector: 'register-card',
@@ -16,8 +17,18 @@ export class RegisterCardComponent implements OnInit {
     private valService: ValidatorService,
   ) { }
 
+
   ngOnInit() {
   }
+
+
+  // newUser = new FormGroup({
+  //   name: new FormControl(),
+  //   email: new FormControl(),
+  //   username: new FormControl(),
+  //   password: new FormControl(),
+  //   admin: new FormControl()
+  // });
 
   name: String;
   email: String;
@@ -25,7 +36,7 @@ export class RegisterCardComponent implements OnInit {
   password: String;
   admin: boolean;
 
-  createAccount() {
+  createAccount(form: NgForm) {
     let currentUser = this.reqService.getLocalUserData();
     // console.log(currentUser)
 
@@ -60,7 +71,7 @@ export class RegisterCardComponent implements OnInit {
         this.email = "";
         this.username = "";
         this.password = "";
-
+        form.reset();
         this.reloadUsers.emit("Reload");
 
       }
@@ -69,7 +80,6 @@ export class RegisterCardComponent implements OnInit {
         console.log(houseHoldReturn.error);
       }
     });
-
   }
 
 }
